@@ -1,7 +1,47 @@
+:root {
+    --main-background-color: #484a77;
+    --main-border-color: #323353;
+}
+
+@font-face {
+    font-family: 'Habbo';
+    src: url('../fonts/Habbo.woff2') format('woff2');
+}
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+}
+
+body {
+    font-family: 'Habbo';
+    font-size: 44px;
+    color: white;
+    text-shadow: 1px 1px 0 #000,
+        -1px 1px 0 #000,
+        1px -1px 0 #000,
+        -1px -1px 0 #000,
+        0px 1px 0 #000,
+        0px -1px 0 #000,
+        -1px 0px 0 #000,
+        1px 0px 0 #000,
+        2px 2px 0 #000,
+        -2px 2px 0 #000,
+        2px -2px 0 #000,
+        -2px -2px 0 #000,
+        0px 2px 0 #000,
+        0px -2px 0 #000,
+        -2px 0px 0 #000,
+        2px 0px 0 #000,
+        1px 2px 0 #000,
+        -1px 2px 0 #000,
+        1px -2px 0 #000,
+        -1px -2px 0 #000,
+        2px 1px 0 #000,
+        -2px 1px 0 #000,
+        2px -1px 0 #000,
+        -2px -1px 0 #000;
 }
 
 .navbar {
@@ -29,8 +69,9 @@ main {
     margin: 0 auto;
     padding: 3rem;
     text-align: center;
-    background: lightblue;
-    gap: 24px;
+    background: var(--main-background-color);
+    border: 8px solid var(--main-border-color);
+    gap: 6rem;
 }
 
 .hero {
@@ -38,21 +79,21 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 128px;
-    padding-block: 12rem;
+    padding-block: 4rem;
     gap: 2rem;
     text-align: center;
-    background-color: azure;
+    background: #474747;
 }
 
 .hero p {
-    font-size: 24px;
+    font-size: 40px;
     max-width: 32rem;
 }
 
 .carousel {
     position: relative;
-    width: 600px;
+    width: 100%;
+    max-width: 600px;
     margin: auto;
     overflow: hidden;
 
@@ -62,30 +103,31 @@ main {
     display: flex;
     transition: transform 0.5s ease;
     margin-bottom: 12px;
-    
+
 }
 
 .slide {
     min-width: 100%;
-    height: 300px;
+    aspect-ratio: 16/9;
     background-color: antiquewhite;
 }
 
 .slide img {
     width: 100%;
+    height: auto;
     display: block;
-    
+
 }
 
 .carousel-btn {
     position: absolute;
     top: 0;
     bottom: 24px;
-    min-width: 4rem;
-    padding: 1rem;
+    width: clamp(0.5rem, 8vw, 4rem);
+    padding: 0.5 rem 1rem;
     background: rgba(255, 255, 255, 0.1);
     border: none;
-    font-size: 2rem;
+    font-size: clamp(1rem, 3vw, 2rem);
     cursor: pointer;
     color: white;
     transition: background 0.3s, opacity 0.3s;
@@ -116,7 +158,6 @@ main {
     height: 12px;
     background: #999;
     border: none;
-    border-radius: 50%;
     cursor: pointer;
     transition: background 0.3s, transform 0.3s;
 }
@@ -138,7 +179,6 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-block: 2rem;
     gap: 2rem;
 }
 
@@ -154,7 +194,7 @@ main {
 
 .world.card img {
     width: min(720px, 100%);
-    height: 360px;
+    aspect-ratio: 16/9;
     background: blue;
 }
 
@@ -165,15 +205,33 @@ main {
     width: min(360px, 100%);
 }
 
+.characters-label {
+    margin-bottom: 1rem;
+}
+
+.characters-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.character.card {
+    display: flex;
+    flex-wrap: wrap;
+    width: min(360px, 100%);
+}
+
 .updates-label {
     margin-bottom: 1rem;
 }
 
 .updates-content {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
 }
 
 .update.card {
@@ -184,12 +242,15 @@ main {
 }
 
 .footer-content {
+    font-family: sans-serif;
+    color: black;
+    font-size: 12px;
+    text-shadow: none;
     display: flex;
     align-items: center;
     flex-direction: column;
     padding: 1rem;
     gap: 1rem;
     text-align: center;
+    background: #474747;
 }
-
-

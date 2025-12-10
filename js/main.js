@@ -6,69 +6,50 @@ class Slider {
         this.nextBtn = document.querySelector('.next');
         this.dotsContainer = document.querySelector('.dots');
         this.slides = Array.from(this.slidesContainer.children);
-        this.current = 1;
+        this.current = 0;
 
-        this.cloneSlides()
-        this.createDots()
-        this.attachEvents()
-        this.goTo(this.current, false)
+        this._createDots()
+        this._attachEvents()
+        this.goTo(this.current)
     }
 
-    cloneSlides(){
-        const firstClone = this.slides[0].cloneNode(true);
-        const lastClone = this.slides[this.slides.length - 1].cloneNode(true);
-        this.slidesContainer.appendChild(firstClone);
-        this.slidesContainer.insertBefore(lastClone, this.slidesContainer.firstChild);
-        this.slides = Array.from(this.slidesContainer.children);
-        this.realSlideCount = this.slides.length - 2;
-    }
-
-    createDots() {
+    _createDots() {
         this.dots = []
-        for (let i = 0; i < this.realSlideCount; i++) {
+        for (let i = 0; i < this.slides.length; i++) {
             const dot = document.createElement('button');
             dot.classList.add('dot');
             if (i === 0) dot.classList.add('active');
-            dot.addEventListener('click', () => this.goTo(i + 1));
+            dot.addEventListener('click', () => this.goTo(i));
             this.dotsContainer.appendChild(dot);
             this.dots.push(dot)
         }
 
     }
    
-    attachEvents(){
+    _attachEvents(){
         this.prevBtn.addEventListener('click', () => this.goTo(this.current - 1));
         this.nextBtn.addEventListener('click', () => this.goTo(this.current + 1));
-        this.slidesContainer.addEventListener('transitionend', () => {
-            if (this.current === 0) {
-                this.goTo(this.realSlideCount, false);
-            }
-            if (this.current === this.slides.length - 1) {
-                this.goTo(1, false);
-            }
-        })
     }
 
-    updateDots() {
-        const realIndex = (this.current - 1 + this.realSlideCount) % this.realSlideCount;
-        this.dots.forEach((dot, i) => dot.classList.toggle('active', i === realIndex));
+    _updateDots() {
+        this.dots.forEach((dot, i) => dot.classList.toggle('active', i === this.current));
     }
 
-    goTo(index, animate = true) {
-        if (index < 0 ) index = this.slides.length - 2
-        if (index >= this.slides.length) index = 1
-        this.current = index;
-        if (animate) {
-            this.slidesContainer.style.transition = 'none';
-            void this.slidesContainer.offsetWidth
-            this.slidesContainer.style.transition = 'transform 0.5s ease';
-
-        } else {
-            this.slidesContainer.style.transition = 'none'
-        }
+    goTo(index) {
+        this.current = index % this.slides.length;
         this.slidesContainer.style.transform = `translateX(-${this.current * 100}%)`
-        if (animate) this.updateDots()
-    }   
+        if (this.current === 0) {
+            this.prevBtn.style.display = 'none'
+        } else {
+            this.prevBtn.style.display = 'block'
+        }
+        if (this.current === this.slides.length - 1) {
+            this.nextBtn.style.display = 'none'
+        } else {
+            this.nextBtn.style.display = 'block'
+        }
+        this._updateDots()
+    }
 }
 
 new Slider('.carousel')
