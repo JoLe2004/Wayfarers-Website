@@ -9,7 +9,7 @@ class Slider {
         this.current = 0;
 
         this._createDots()
-        this._attachEvents()
+        this._attachListeners()
         this.goTo(this.current)
     }
 
@@ -18,7 +18,7 @@ class Slider {
         for (let i = 0; i < this.slides.length; i++) {
             const dot = document.createElement('button');
             dot.classList.add('dot');
-            if (i === 0) dot.classList.add('active');
+            if (i === this.current) dot.classList.add('active');
             dot.addEventListener('click', () => this.goTo(i));
             this.dotsContainer.appendChild(dot);
             this.dots.push(dot)
@@ -26,7 +26,7 @@ class Slider {
 
     }
    
-    _attachEvents(){
+    _attachListeners(){
         this.prevBtn.addEventListener('click', () => this.goTo(this.current - 1));
         this.nextBtn.addEventListener('click', () => this.goTo(this.current + 1));
     }
@@ -53,3 +53,36 @@ class Slider {
 }
 
 new Slider('.carousel')
+
+class LeafTailAnimation {
+    constructor(){
+        this.leaftail_frames = ['../images/LeafTail1.png', '../images/LeafTail2.png']
+        this.leaftail = document.querySelector('.leaftail')
+        this.current_frame = 0
+        this.intervalId = null
+        this._startSleep()
+        this._attachListeners()
+    }
+
+    _startSleep() {
+        this.intervalId = setInterval(() => {
+            this.current_frame = (this.current_frame + 1) % this.leaftail_frames.length
+            this.leaftail.src = this.leaftail_frames[this.current_frame]
+        }, 1000)
+    }
+
+    _attachListeners() {
+        this.leaftail.addEventListener('mouseenter', (e) => {
+            clearInterval(this.intervalId)
+            e.currentTarget.src='../images/LeafTail_wake.png'
+        })
+
+        this.leaftail.addEventListener('mouseleave', () => {
+            clearInterval(this.intervalId)
+            this.leaftail.src = '../images/LeafTail1.png'
+            this._startSleep()
+        })
+    }
+}
+
+new LeafTailAnimation()

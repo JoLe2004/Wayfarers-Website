@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <nav class="navbar">
+    <nav class="navbar" aria-label="Main Navigation">
         <div>
             <ul>
                 <li><a>About</a></li>
@@ -29,49 +29,49 @@
         <h3>Available On</h3>
     </section>
     <main>
-        <section class="carousel">
-            <div class="slides">
-                <div class="slide">
-                    slide1
+        <section class="carousel" aria-label="Game screenshots and trailers.">
+            <div class="slides" aria-live="polite">
+                <div class="slide" role="group" aria-roledescription="slide" aria-label="1 of 3">
+                    <img src="../images/battle_1.png" alt="Turn-based battle scene showing party members and enemies.">
                 </div>
                 <div class="slide">
-                    slide2
+                    <img alt="Party member performing a skill action in battle."/>
                 </div>
-                <div class="slide">
-                    slide3
+                <div class="slide" alt="">
+                    <img alt="Talking to NPC character."/>
                 </div>
             </div>
-            <button class="carousel-btn prev">&#10094</button>
-            <button class="carousel-btn next">&#10095</button>
-            <div class="dots"></div>
+            <button class="carousel-btn prev" aria-label="Previous slide.">&#10094</button>
+            <button class="carousel-btn next" aria-label="Next slide.">&#10095</button>
+            <div class="dots" role="tablist"></div>
         </section>
         <section class="world">
             <h2 class="world-label">World</h2>
             <p>Explore the continent of Faunia, filled with rich environments and sprawling civilizations!</p>
             <div class="world-content">
                 <div class="world card">
-                    <img>
+                    <img alt="Party members exploring coastal town of Catport."/>
                     <div>
                         <h2>Catport</h2>
                         <p>A serene town known for its feline inhabitants and fresh seafood. A certain witch resides in the tower off its coast.</p>
                     </div>
                 </div>
                 <div class="world card">
-                    <img>
+                    <img alt="Party members exploring Sands of Yore."/>
                     <div>
                         <h2>Sands of Yore</h2>
                         <p>Rolling dunes of sand, full of ancient treasure and secrets! </p>
                     </div>
                 </div>
                 <div class="world card">
-                    <img>
+                    <img alt="Party members talking to a monkey scientist."/>
                     <div>
                         <h2>New Ape City</h2>
-                        <p>A lively locale beginning to dabble in technology. It's the ideal place for those seeking excitement!</p>
+                        <p>A lively locale beginning to dabble in technology. Lots of monkey business goes on around here.</p>
                     </div>
                 </div>
                 <div class="world card">
-                    <img>
+                    <img alt="Party members exploring Moonlit Peaks."/>
                     <div>
                         <h2>Moonlit Peaks</h2>
                         <p>Mountaintops shrouded in eternal night, illuminated by a radiant moon.</p>
@@ -84,7 +84,7 @@
             <h2 class="characters-label">Characters</h2>
             <div class="characters-content">
                 <div class="character card">
-                    <img>
+                    <img src="../images/Estella1.png" alt="Estella, a cat witch.">
                     <div>
                         <h2>Estella</h2>
                         <p>A witch living a quiet life creating various spells and potions. She sometimes fulfills the odd requests that are asked of her.</p>
@@ -106,6 +106,7 @@
     </main>
     <footer>
         <div class="footer-content">
+            <img class="leaftail" src="../images/LeafTail1.png" alt="LeafTail character."/>
             <span>Wayfarers © John Le 2025. All rights reserved.</span>
             <span>
                 Steam and the Steam logo are trademarks and/or registered trademarks of
